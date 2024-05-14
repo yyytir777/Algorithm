@@ -10,12 +10,12 @@ int main() {
     string temp;
     cin >> temp;
 
-    int w = 1;
-    int sum = 0;
+    long long w = 1;
+    long long sum = 0;
     for(int i = 0; i < l; i++) {
-        sum += (int(temp[i]) - 96) * w;
-        w *= r;
+        sum = (sum + (int(temp[i]) - 96) * w) % M;
+        w = (w * r) % M;
     }
 
-    cout << sum % M;
+    cout << sum;
 }

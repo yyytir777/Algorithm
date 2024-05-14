@@ -7,13 +7,11 @@ using namespace std;
 vector<pair<int, int>> graph[N];
 priority_queue<pair<int, int>> pq;
 int dist[N];
-bool visited[N] = {0,};
 int n, m;
 
 void dijkstra(int start) {
     pq.push({start, 0});
     dist[start] = 0;
-    visited[start] = true;
 
     while(!pq.empty()) {
         int cur_node = pq.top().first;

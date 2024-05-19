@@ -9,21 +9,19 @@ int main() {
     string tmp;
     cin >> tmp;
 
-    string p = "";
-    for(int i = 0; i < N; i++) {
-        p += "IO";
-    }
-    p += "I";
-
     int cnt = 0;
     for(int i = 0; i < M; i++) {
-        if(tmp[i] == 'I'){
-            bool equals = 1;
-            for(int j = 0; j <= 2 * N; j++) {
-                if(tmp[i + j] != p[j]) equals = 0;
+        int part_cnt = 0;
+        if(tmp[i] == 'I') {
+            while(tmp[i+1] == 'O' && tmp[i+2] == 'I') {
+                part_cnt++;
+                if(part_cnt == N) {
+                    part_cnt--;
+                    cnt++;
+                }
+                i += 2;
             }
-
-            if(equals) cnt++;
+            part_cnt = 0;
         }
     }
 

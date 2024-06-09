@@ -23,5 +23,5 @@ long long multiply(long long i, long long j, long long k) {
 
 int main() {
     cin >> a >> b >> c;
-    cout << multiply(a % c, b, c);
+    cout << multiply(a, b, c);
 }

@@ -66,25 +66,5 @@ int main(){
             graph[i][j] = tmp[j - 1] - 48;
         }
     }
-    
-    // for(int i = 1; i <= N; i++) {
-    //     for(int j = 1; j <= M; j++) {
-    //         if(graph[i][j] == 1) wall_v.push_back({i, j});
-    //     }
-    // }
-
-    // for(pair<int, int> tmp : wall_v) {
-        
-    //     int r = tmp.first;
-    //     int c = tmp.second;
-
-    //     // cout << "wall : (" << r << ", " << c << ")\n";
-
-    //     graph[r][c] = 0;
-    //     bfs(1, 1);
-    //     init();
-    //     graph[r][c] = 1;
-    // }
-
     cout << bfs(1, 1);
 }

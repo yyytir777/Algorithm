@@ -2,7 +2,7 @@
 #define MAX 100001
 using namespace std;
 //  value, left, right
-pair<int, pair<int, int>> graph[MAX]; // 배열
+pair<int, pair<int, int>> graph[MAX];
 bool visited[MAX] = {0,};
 int parents[MAX];
 int n;
@@ -21,26 +21,21 @@ int main() {
         end_node = tmp;
         tmp = graph[tmp].second.second;
     }
-    // cout << end_node << '\n';
 
     int cnt = 0;
     int cur_node = 1;
     visited[cur_node] = 1;
-    int par_node;
-    // cout << cur_node << '\n';
     while(cur_node != -1) {
         if (graph[cur_node].second.first != -1 && !visited[graph[cur_node].second.first]) {
-            visited[graph[cur_node].second.first] = 1; // 방문처리
+            visited[graph[cur_node].second.first] = 1;
             parents[graph[cur_node].second.first] = cur_node; //부모 노드 기록 (graph[cur_node].second.first의 parent는 cur_node이다)
             cur_node = graph[cur_node].second.first;
-            // cout << cur_node << '\n';
             cnt++;
         }
         else if (graph[cur_node].second.second != -1 && !visited[graph[cur_node].second.second]) {
             visited[graph[cur_node].second.second] = 1;
             parents[graph[cur_node].second.second] = cur_node; //부모 노드 기록 (graph[cur_node].second.second의 parent는 cur_node이다)
             cur_node = graph[cur_node].second.second;
-            // cout << cur_node << '\n';
             cnt++;
         }
         else if (cur_node == end_node) {
@@ -48,10 +43,8 @@ int main() {
         }
         else if (graph[parents[cur_node]].second.first == cur_node || graph[parents[cur_node]].second.second == cur_node) {
             cur_node = parents[cur_node];
-            // cout << cur_node << '\n';
             cnt++;
         }
     }
-
     cout << cnt;
 }

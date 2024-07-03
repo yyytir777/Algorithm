@@ -1,68 +1,46 @@
 #include <iostream>
 #include <queue>
-#define MAX 100002
+#define MAX 100005
 using namespace std;
-//최단경로이므로 BFS 사용
 
-int arr[MAX];
-bool check[MAX] = {0,};
+bool state[MAX] = {0,};
 int time[MAX] = {0,};
 queue<int> q;
 
-int BFS(int v,int k){
-    if(v == k){
-        return 0;
-    }
-    int v_next;
-    q.push(v);
-    check[v] = true;
+void bfs(int n, int k) {
+    q.push(n);
+    state[n] = true;
 
-    while(!q.empty()){
-        v = q.front();
+    while(!q.empty()) {
+        int v = q.front();
         q.pop();
         
-        v_next = v - 1;
-        if(v_next == k && v_next < MAX && v_next >= 0){
-            time[v_next] = time[v] + 1;
-            return time[v_next];
+        if(v == k) {
+            break;
         }
-        else if(check[v_next] == false && v_next < MAX && v_next >= 0){
-            time[v_next] = time[v] + 1;
-            check[v_next] = true;
-            q.push(v_next);
+        if(state[2 * v] == false && 2 * v < MAX && 2 * v >= 0) {
+            q.push(2 * v);
+            state[2 * v] = true;
+            time[2 * v] = time[v] + 1;
         }
-
-
-        v_next = v + 1;
-        if(v_next == k && v_next < MAX && v_next >= 0){
-            time[v_next] = time[v] + 1;
-            return time[v_next];
+        if(state[v + 1] == false && v + 1 < MAX && v + 1 >= 0) {
+            q.push(v + 1);
+            state[v + 1] = true;
+            time[v + 1] = time[v] + 1;
         }
-        else if(check[v_next] == false && v_next < MAX && v_next >= 0){
-            time[v_next] = time[v] + 1;
-            check[v_next] = true;
-            q.push(v_next);
-        }
-
-
-        v_next = v * 2;
-        if(v_next == k && v_next < MAX && v_next >= 0){
-            time[v_next] = time[v] + 1;
-            return time[v_next];
-        }
-        else if(check[v_next] == false && v_next < MAX && v_next >= 0){
-            check[v_next] = true;
-            time[v_next] = time[v] + 1;
-            q.push(v_next);
+        if(state[v - 1] == false && v - 1 < MAX && v - 1 >= 0) {
+            q.push(v - 1);
+            state[v - 1] = true;
+            time[v - 1] = time[v] + 1;
         }
     }
-    
+    cout << time[k] << '\n';
 }
 
-int main(){
+
+int main() {
     int n, k;
     cin >> n >> k;
 
-    cout << BFS(n, k);
-    return 0;
+    bfs(n, k);
 }

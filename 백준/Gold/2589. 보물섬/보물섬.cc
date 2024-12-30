@@ -19,15 +19,6 @@ int max_dist = 0;
 int row_axis[4] = {0, 0, -1, 1};
 int col_axis[4] = {1, -1, 0, 0};
 
-void init() {
-	for(int i = 0; i < r; i++) {
-		for(int j = 0; j < c; j++) {
-			visited[i][j] = 0;
-			dist[i][j] = 0;
-		}
-	}
-}
-
 void init_visited() {
 	for(int i = 0; i < r; i++) {
 		for(int j = 0; j < c; j++) {
@@ -46,19 +37,6 @@ void input() {
 			else if(input == 'L') graph[i][j] = L;
 		}
 	}
-}
-
-void printGraph() {
-	for(int i = 0; i < r; i++) {
-		for(int j = 0; j < c; j++) {
-			cout << dist[i][j] << " ";
-		}
-		cout << '\n';
-	}	
-}
-
-bool compare(int a, int b) {
-	return a > b;
 }
 
 int bfs(pair<int, int> start) {

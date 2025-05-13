@@ -64,8 +64,8 @@ void input() {
 
     cin >> m;
     
+    int a, b, c;    
     for(int i = 0; i < m; i++) {
-        int a, b, c;    
         cin >> a >> b >> c;
 
         if(a == 1) {
